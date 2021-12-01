@@ -1,18 +1,16 @@
 package com.cx.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.cx.entity.BlogCategory;
-import com.cx.mapper.BlogCategoryMapper;
-import com.cx.service.IBlogCategoryService;
-import lombok.extern.slf4j.Slf4j;
+import com.cx.entity.Blog;
+import com.cx.mapper.BlogMapper;
+import com.cx.service.IBlogService;
 import org.springframework.stereotype.Service;
 
 /**
  * @author ChengXing
- * @Date Created in 22:28 2021/11/22
+ * @Date Created in 21:49 2021/12/1
  * @Description 20211110blog
  */
 @Service
-@Slf4j
-public class BlogServiceImpl extends ServiceImpl<BlogCategoryMapper, BlogCategory> implements IBlogCategoryService {
+public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IBlogService {
 }
