@@ -1,11 +1,15 @@
 package com.cx.controller;
 
+import com.cx.constants.BaseConstant;
+import com.cx.entity.User;
 import com.cx.service.IBlogCategoryService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * @author ChengXing
@@ -29,8 +33,15 @@ public class IndexController {
 //    }
 
     @GetMapping(value = {"/", "/index"})
-    public ModelAndView newIndex() {
+    public ModelAndView newIndex(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
+        // 获取用户登录的信息
+        User user = (User) session.getAttribute(BaseConstant.SESSION_USER);
+        // 如果已经登录 则重定向到首页
+        if (user == null) {
+            modelAndView.setViewName("redirect:/api/login/loginUser");
+            return modelAndView;
+        }
         modelAndView.setViewName("index");
         return modelAndView;
     }

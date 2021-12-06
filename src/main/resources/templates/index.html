@@ -12,6 +12,7 @@
 </head>
 <body>
 <div outline="0" hidefocus="true" id="app">
+    <#include "/common/header.html">
     <div>
         <div class="square-header-container">
             <div class="square-header-logo-container">
@@ -52,11 +53,14 @@
                 </div>
                 <div class="square-operation-detail">
 
-                    <div class="p4 square-operation-item active">
+                    <div :class="checkIndex==0?'p4 square-operation-item active':'p4 square-operation-item'"
+                         @click="changeCategory(0,0)">
                         全部
                     </div>
 
-                    <div class="p4 square-operation-item" v-for="item in blogCategoryList">
+                    <div :class="checkIndex==(index+1)?'p4 square-operation-item active':'p4 square-operation-item'"
+                         v-for="(item,index) in blogCategoryList"
+                         @click="changeCategory(item.id,index+1)">
                         {{item.categoryTitle}}
                     </div>
 
