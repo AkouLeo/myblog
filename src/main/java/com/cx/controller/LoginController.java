@@ -6,6 +6,7 @@ import com.cx.entity.User;
 import com.cx.service.IUserService;
 import com.cx.utils.MD5.MD5Utils;
 import com.cx.vo.UserVo;
+import com.google.code.kaptcha.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -31,12 +32,12 @@ public class LoginController {
      */
     @GetMapping("/loginUser")
     public String login(HttpSession session) {
-        // 获取用户登录的信息
-        User user = (User) session.getAttribute(BaseConstant.SESSION_USER);
-        // 如果已经登录 则重定向到首页
-        if (user != null) {
-            return "redirect:/";
-        }
+//        // 获取用户登录的信息
+//        User user = (User) session.getAttribute(BaseConstant.SESSION_USER);
+//        // 如果已经登录 则重定向到首页
+//        if (user != null) {
+//            return "redirect:/";
+//        }
         return "login";
     }
 
@@ -61,6 +62,17 @@ public class LoginController {
         // 如果用户不存在直接抛异常
         if (user == null) {
             return "fail";
+        }
+
+        // 比较验证码
+        String code = userVo.getCode();
+        if (code == null) {
+            return "fail";
+        }
+
+        String sessionCode = (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
+        if (!code.equalsIgnoreCase(sessionCode)) {
+            return "falicode";
         }
 
         // MD5加密

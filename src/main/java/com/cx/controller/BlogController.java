@@ -45,6 +45,7 @@ public class BlogController {
     @RequestMapping("getDetail")
     @ResponseBody
     public Blog findBlogDetail(Blog blog) {
+        log.info("2222222222222222222");
         Integer id = blog.getId();
         Blog blogDetail = blogService.getById(id);
         return blogDetail;
