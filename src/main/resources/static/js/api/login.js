@@ -1,10 +1,10 @@
 var vm = new Vue({
     el: "#app",
     data: {
-        title: '登录页面',
+        title: '傻逼李林',
         queryLoginUser: {
-            account: '',
-            password: '',
+            account: '17347804490',
+            password: '123456',
             code: ''
         }
     },

@@ -1,6 +1,6 @@
 # 配置端口
 server:
-  port: 8080
+  port: 8081
 
 # 配置freemarker
 spring:
@@ -8,4 +8,4 @@ spring:
     suffix: .html
     cache: false
   profiles:
-    active: dev
+    active: prod
